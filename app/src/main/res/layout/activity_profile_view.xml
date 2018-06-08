@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ViewProfile">
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="138dp"
+        android:layout_height="117dp"
+        app:srcCompat="@drawable/color_cursor_white"
+        tools:layout_editor_absoluteX="123dp"
+        tools:layout_editor_absoluteY="34dp" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="214dp"
+        android:layout_height="29dp"
+        android:text="Name Location Occupation"
+        tools:layout_editor_absoluteX="85dp"
+        tools:layout_editor_absoluteY="180dp" />
+
+    <RatingBar
+        android:id="@+id/ratingBar2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:layout_editor_absoluteX="72dp"
+        tools:layout_editor_absoluteY="367dp" />
+
+    <Button
+        android:id="@+id/chatButton"
+        android:layout_width="240dp"
+        android:layout_height="wrap_content"
+        android:text="COLLAB"
+        tools:layout_editor_absoluteX="71dp"
+        tools:layout_editor_absoluteY="446dp" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="213dp"
+        android:layout_height="68dp"
+        android:text="description"
+        tools:layout_editor_absoluteX="86dp"
+        tools:layout_editor_absoluteY="227dp" />
+
+    <TextView
+        android:id="@+id/textView5"
+        android:layout_width="214dp"
+        android:layout_height="35dp"
+        android:text="website"
+        tools:layout_editor_absoluteX="85dp"
+        tools:layout_editor_absoluteY="316dp"
+        android:onClick="onClick"
+        android:clickable="true"/>
+
+</android.support.constraint.ConstraintLayout>

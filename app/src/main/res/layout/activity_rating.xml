@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Rating">
+
+    <RatingBar
+        android:id="@+id/ratingBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:layout_editor_absoluteX="72dp"
+        tools:layout_editor_absoluteY="305dp" />
+
+    <ImageView
+        android:id="@+id/imageViewPP"
+        android:layout_width="130dp"
+        android:layout_height="122dp"
+        app:srcCompat="@drawable/color_cursor_white"
+        tools:layout_editor_absoluteX="127dp"
+        tools:layout_editor_absoluteY="45dp" />
+
+    <TextView
+        android:id="@+id/textViewInstructions"
+        android:layout_width="237dp"
+        android:layout_height="51dp"
+        android:text="Rate your experience"
+        tools:layout_editor_absoluteX="72dp"
+        tools:layout_editor_absoluteY="210dp" />
+
+    <Button
+        android:id="@+id/btnFinish"
+        android:layout_width="240dp"
+        android:layout_height="wrap_content"
+        android:text="FINISH"
+        tools:layout_editor_absoluteX="72dp"
+        tools:layout_editor_absoluteY="403dp" />
+</android.support.constraint.ConstraintLayout>
