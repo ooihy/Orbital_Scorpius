@@ -35,10 +35,6 @@ public class MainActivity extends AppCompatActivity {
                                 mDrawerLayout.closeDrawers();
                                 startActivity(new Intent(MainActivity.this, Profile.class));
                                 break;
-                            case R.id.search:
-                                mDrawerLayout.closeDrawers();
-                                startActivity(new Intent(MainActivity.this, Search.class));
-                                break;
                             case R.id.logout:
                                 mDrawerLayout.closeDrawers();
                                 userLogout();
