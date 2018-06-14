@@ -45,9 +45,7 @@ public class Profile extends AppCompatActivity {
     private Button mBtnDone;
     private Uri filePath;
 
-    //Firebase
-    FirebaseStorage storage = FirebaseStorage.getInstance();
-    StorageReference storageReference = storage.getReference();
+    private DatabaseReference mDatabase;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,6 +63,8 @@ public class Profile extends AppCompatActivity {
         mBtnUpload = findViewById(R.id.button7);
         mBtnChoose = findViewById(R.id.button);
         mBtnDone = findViewById(R.id.btnDone);
+
+        mDatabase = FirebaseDatabase.getInstance().getReference();
 
 
         // choose image to upload
@@ -117,6 +117,12 @@ public class Profile extends AppCompatActivity {
                     Toast.makeText(Profile.this, "Enter short description", Toast.LENGTH_SHORT).show();
                     return;
                 }
+
+                mDatabase.child("Name").setValue(fullName);
+                mDatabase.child("Location").setValue(location);
+                mDatabase.child("Profession").setValue(profession);
+                mDatabase.child("Description").setValue(description);
+                mDatabase.child("Website").setValue(website);
 
                 startActivity(new Intent(Profile.this, MainActivity.class));
                 finish();

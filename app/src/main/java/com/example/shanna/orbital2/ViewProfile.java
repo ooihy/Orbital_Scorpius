@@ -10,6 +10,9 @@ import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
 public class ViewProfile extends AppCompatActivity {
 
     private ImageView mProfileImage;
@@ -18,6 +21,7 @@ public class ViewProfile extends AppCompatActivity {
     private RatingBar mRating;
     private Button mChat;
     private TextView mWebsite;
+    private DatabaseReference mDatabase;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,6 +33,8 @@ public class ViewProfile extends AppCompatActivity {
         mDescription = findViewById(R.id.textView2);
         mRating = findViewById(R.id.ratingBar2);
         mChat = findViewById(R.id.chatButton);
+
+        mDatabase = FirebaseDatabase.getInstance().getReference();
 
         mChat.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -51,8 +57,7 @@ public class ViewProfile extends AppCompatActivity {
             }
         });
 
-        int aveRating = 0; //get from database to calculate
-        mRating.setNumStars(aveRating);
+
     }
 
 
