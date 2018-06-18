@@ -28,10 +28,6 @@ import com.google.firebase.auth.FirebaseAuth;
 
 public class MainActivity extends AppCompatActivity {
     private DrawerLayout mDrawerLayout;
-
-    //private ViewPager mViewPager;
-    //private SectionPagerAdapter mSectionsPagerAdapter;
-
     private Toolbar mToolbar;
 
     private TabLayout mTabLayout;
@@ -45,6 +41,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_homepage);
+
 
         mDrawerLayout = findViewById(R.id.drawer_layout);
 
@@ -73,7 +70,7 @@ public class MainActivity extends AppCompatActivity {
                                 mDrawerLayout.closeDrawers();
                                 startActivity(new Intent(MainActivity.this, ViewProfile.class));
                                 break;
-                            case R.id.settings:
+                            case R.id.settings: //for them to change their account details
                                 mDrawerLayout.closeDrawers();
                                 startActivity(new Intent(MainActivity.this, Profile.class));
                                 break;
@@ -88,18 +85,7 @@ public class MainActivity extends AppCompatActivity {
                 });
 
 
-        //Tabs
-
-
-       /* mViewPager=(ViewPager) findViewById(R.id.main_tabPager);
-        mSectionsPagerAdapter = new SectionPagerAdapter(getSupportFragmentManager());
-
-        mViewPager.setAdapter(mSectionsPagerAdapter);
-
-        mTabLayout = (TabLayout)findViewById(R.id.main_tabs);
-
-        mTabLayout.setupWithViewPager(mViewPager);
-        */
+        //Tabs -> Partners, Chats, Requests
 
         mTabLayout=(TabLayout)findViewById(R.id.tabLayout);
         frameLayout=(FrameLayout)findViewById(R.id.content_frame);
@@ -124,6 +110,8 @@ public class MainActivity extends AppCompatActivity {
                     case 2:
                         fragment = new RequestFragment();
                         break;
+                    default:
+                        break;
                 }
                 FragmentManager fm = getSupportFragmentManager();
                 FragmentTransaction ft = fm.beginTransaction();
@@ -144,10 +132,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
-
-
     }
-
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {

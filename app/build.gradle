@@ -37,8 +37,18 @@ dependencies {
 
     implementation 'com.android.support:design:27.1.1'
 
-    //added for notifications feature
+    //added for notifications feature -> Currrently not in use
     implementation "com.android.support:support-compat:27.1.1"
+
+
+    //Below: For Profile.java
+    //HY added this for the circular profile avatar
+    implementation 'de.hdodenhof:circleimageview:2.2.0'
+    //HY added this library for image cropping of profile avatar
+    implementation 'com.theartofdev.edmodo:android-image-cropper:2.7.+'
+    //HY added this library so that the update page of app will also display the image set by user
+    //previously
+    implementation 'com.squareup.picasso:picasso:2.71828'
 }
 
 apply plugin: 'com.google.gms.google-services'

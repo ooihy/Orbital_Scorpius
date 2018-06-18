@@ -10,30 +10,50 @@
         android:id="@+id/ratingBar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        tools:layout_editor_absoluteX="72dp"
-        tools:layout_editor_absoluteY="305dp" />
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewInstructions" />
 
     <ImageView
         android:id="@+id/imageViewPP"
-        android:layout_width="130dp"
-        android:layout_height="122dp"
-        app:srcCompat="@drawable/color_cursor_white"
-        tools:layout_editor_absoluteX="127dp"
-        tools:layout_editor_absoluteY="45dp" />
+        android:layout_width="252dp"
+        android:layout_height="169dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="52dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/color_cursor_white" />
 
     <TextView
         android:id="@+id/textViewInstructions"
         android:layout_width="237dp"
         android:layout_height="51dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="92dp"
         android:text="Rate your experience"
-        tools:layout_editor_absoluteX="72dp"
-        tools:layout_editor_absoluteY="210dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.503"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageViewPP" />
 
     <Button
         android:id="@+id/btnFinish"
         android:layout_width="240dp"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
         android:text="FINISH"
-        tools:layout_editor_absoluteX="72dp"
-        tools:layout_editor_absoluteY="403dp" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ratingBar"
+        app:layout_constraintVertical_bias="0.31" />
 </android.support.constraint.ConstraintLayout>

@@ -3,11 +3,11 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
         <item
             android:id="@+id/profile"
-            android:title="My Account" />
+            android:title="View My Account" />
         app:showAsAction="always" />
         <item
             android:id="@+id/settings"
-            android:title="settings" />
+            android:title="Update Profile Settings" />
         app:showAsAction="always" />
 
         <item

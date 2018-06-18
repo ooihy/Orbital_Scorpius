@@ -18,8 +18,13 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
+
+import java.util.HashMap;
 //alt+enter to import automatically
 
 public class SignupActivity extends AppCompatActivity {
@@ -31,7 +36,9 @@ public class SignupActivity extends AppCompatActivity {
     private EditText mEditTextUsername;
     private EditText mEditTextIC;
     private Button mBtnNext;
+
     private FirebaseAuth auth;
+    private DatabaseReference mDatabase;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,12 +61,12 @@ public class SignupActivity extends AppCompatActivity {
         mBtnNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String fullName = mEditTextName.getText().toString().trim(); //get from textbox
-                String username = mEditTextUsername.getText().toString().trim(); //get from textbox
-                String phoneNum = mEditTextPhone.getText().toString().trim(); //get from textbox
-                String email = mEditTextEmail.getText().toString().trim(); //get from textbox
-                String password = mEditTextPw.getText().toString().trim(); //get from textbox
-                String ic = mEditTextIC.getText().toString().trim(); //get from textbox
+                final String fullName = mEditTextName.getText().toString().trim(); //get from textbox
+                final String username = mEditTextUsername.getText().toString().trim(); //get from textbox
+                final String phoneNum = mEditTextPhone.getText().toString().trim(); //get from textbox
+                final String email = mEditTextEmail.getText().toString().trim(); //get from textbox
+                final String password = mEditTextPw.getText().toString().trim(); //get from textbox
+                final String ic = mEditTextIC.getText().toString().trim(); //get from textbox
 
                 // Check if email is empty
                 if (TextUtils.isEmpty(email)) {
@@ -115,9 +122,30 @@ public class SignupActivity extends AppCompatActivity {
                             @Override
                             public void onComplete(@NonNull Task<AuthResult> task) {
                                 if (!task.isSuccessful()) {
-                                    Toast.makeText(SignupActivity.this, "Authentication Failed", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(SignupActivity.this, "Failed to create new account", Toast.LENGTH_SHORT).show();
                                 } else {
-                                    // Signup successful, got to main activity
+
+                                    FirebaseUser current_user = FirebaseAuth.getInstance().getCurrentUser();
+                                    String uid = current_user.getUid();
+
+                                    mDatabase = FirebaseDatabase.getInstance().getReference().child("Users").child(uid);
+
+                                    HashMap<String,String> userMap = new HashMap<>();
+                                    userMap.put("Full Name", fullName);
+                                    userMap.put("UserName", username);
+                                    userMap.put("Phone number", phoneNum);
+                                    userMap.put("Email", email);
+                                    userMap.put("Password", password);
+                                    userMap.put("IC", ic);
+                                    userMap.put("Image", "default");
+                                    userMap.put("Location", "default");
+                                    userMap.put("Profession", "default");
+                                    userMap.put("Description", "default");
+                                    userMap.put("Website", "default");
+
+                                    mDatabase.setValue(userMap); //putting hashmap into the database for the particular user
+
+                                    // Signup successful, go to main activity
                                     startActivity(new Intent(SignupActivity.this, MainActivity.class));
                                     // End the activity
                                     finish();
