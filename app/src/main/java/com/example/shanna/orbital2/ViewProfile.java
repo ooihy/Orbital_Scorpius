@@ -30,9 +30,12 @@ public class ViewProfile extends AppCompatActivity {
     private TextView mProfileName;
     private TextView mProfileLocation;
     private TextView mProfileProfession;
+    private TextView mUserType;
     private TextView mProfileDescription;
     private TextView mProfileWebsite;
     private TextView mProfilePhoneNum;
+    private TextView mProfileEmail;
+
 
     private RatingBar mRating;
     private Button mCollab;
@@ -42,7 +45,6 @@ public class ViewProfile extends AppCompatActivity {
 
     private FirebaseUser mCurrentUser;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -51,12 +53,15 @@ public class ViewProfile extends AppCompatActivity {
         mProfileDisplayImage = (CircleImageView)findViewById(R.id.profileAvatar);
         mProfileName =  findViewById(R.id.profileFullName);
         mProfileProfession =  findViewById(R.id.profileProfession);
+        mUserType = findViewById(R.id.profileUserType);
         mProfileDescription =  findViewById(R.id.profileAboutMe);
         mProfileLocation =  findViewById(R.id.profileLocation);
         mProfilePhoneNum =  findViewById(R.id.profilePhoneNumber);
+        mProfileEmail =  findViewById(R.id.profileEmail);
         mProfileWebsite =  findViewById(R.id.profileWebsite);
         mRating = findViewById(R.id.profileRating);
         mCollab = findViewById(R.id.profileBtnCollaborate);
+
 
         mDatabase = FirebaseDatabase.getInstance().getReference();
 
@@ -77,12 +82,15 @@ public class ViewProfile extends AppCompatActivity {
                 String image = dataSnapshot.child("Image").getValue().toString();
                 Picasso.get().load(image).into(mProfileDisplayImage);
 
-                mProfileName.setText(dataSnapshot.child("Full Name").getValue().toString());
+                mProfileName.setText(dataSnapshot.child("FullName").getValue().toString());
                 mProfileProfession.setText(dataSnapshot.child("Profession").getValue().toString());
+                mUserType.setText(dataSnapshot.child("UserType").getValue().toString());
                 mProfileDescription.setText(dataSnapshot.child("Description").getValue().toString());
                 mProfileLocation.setText(dataSnapshot.child("Location").getValue().toString());
-                mProfilePhoneNum.setText(dataSnapshot.child("Phone number").getValue().toString());
+                mProfilePhoneNum.setText(dataSnapshot.child("PhoneNum").getValue().toString());
+                mProfileEmail.setText(dataSnapshot.child("Email").getValue().toString());
                 mProfileWebsite.setText(dataSnapshot.child("Website").getValue().toString());
+
 
 
             }

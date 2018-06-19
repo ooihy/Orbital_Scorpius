@@ -40,9 +40,11 @@ public class Profile extends AppCompatActivity {
     private EditText mEditTextName;
     private EditText mEditTextLocation;
     private EditText mEditTextProfession;
+    private EditText mEditTextUserType;
     private EditText mEditTextDescription;
     private EditText mEditTextWebsite;
     private EditText mEditTextPhoneNum;
+    private EditText mEditTextEmail;
     private Button mButtonDone;
     private Button mButtonUpload;
 
@@ -67,9 +69,11 @@ public class Profile extends AppCompatActivity {
         mEditTextName = (EditText) findViewById(R.id.fullName);
         mEditTextLocation = (EditText) findViewById(R.id.Location);
         mEditTextProfession = (EditText) findViewById(R.id.Profession);
+        mEditTextUserType = (EditText) findViewById(R.id.UserType);
         mEditTextWebsite = (EditText) findViewById(R.id.Website);
         mEditTextPhoneNum = (EditText) findViewById(R.id.PhoneNumber);
         mEditTextDescription = (EditText) findViewById(R.id.AboutMe);
+        mEditTextEmail = (EditText)findViewById(R.id.email);
         mButtonDone = (Button)findViewById(R.id.btnDone);
         mButtonUpload = (Button)findViewById(R.id.btnUpload);
 
@@ -91,11 +95,13 @@ public class Profile extends AppCompatActivity {
                 String image = dataSnapshot.child("Image").getValue().toString();
                 Picasso.get().load(image).into(mDisplayImage);
 
-                mEditTextName.setText(dataSnapshot.child("Full Name").getValue().toString());
+                mEditTextName.setText(dataSnapshot.child("FullName").getValue().toString());
                 mEditTextLocation.setText(dataSnapshot.child("Location").getValue().toString());
                 mEditTextProfession.setText(dataSnapshot.child("Profession").getValue().toString());
+                mEditTextUserType.setText(dataSnapshot.child("UserType").getValue().toString());
                 mEditTextWebsite.setText(dataSnapshot.child("Website").getValue().toString());
-                mEditTextPhoneNum.setText(dataSnapshot.child("Phone number").getValue().toString());
+                mEditTextPhoneNum.setText(dataSnapshot.child("PhoneNum").getValue().toString());
+                mEditTextEmail.setText(dataSnapshot.child("Email").getValue().toString());
                 mEditTextDescription.setText(dataSnapshot.child("Description").getValue().toString());
             }
 
@@ -117,19 +123,20 @@ public class Profile extends AppCompatActivity {
                 mProgress.setMessage("Please wait while the changes are being saved");
                 mProgress.show();
 
-                mUserDatabase.child("Full Name").setValue(mEditTextName.getText().toString());
+                mUserDatabase.child("FullName").setValue(mEditTextName.getText().toString());
                 mUserDatabase.child("Location").setValue(mEditTextLocation.getText().toString());
                 mUserDatabase.child("Profession").setValue(mEditTextProfession.getText().toString());
+                mUserDatabase.child("UserType").setValue(mEditTextUserType.getText().toString());
                 mUserDatabase.child("Website").setValue(mEditTextWebsite.getText().toString());
-                mUserDatabase.child("Phone number").setValue(mEditTextPhoneNum.getText().toString());
+                mUserDatabase.child("PhoneNum").setValue(mEditTextPhoneNum.getText().toString());
+                mUserDatabase.child("Email").setValue(mEditTextEmail.getText().toString());
                 mUserDatabase.child("Description").setValue(mEditTextDescription.getText().toString());
 
                 mProgress.setTitle("Done");
                 mProgress.dismiss();
 
-                // if update information is successful, go to view Profile -> ViewProfile not done yet.
+                // if update information is successful, go to view Profile
                  startActivity(new Intent(Profile.this, ViewProfile.class));
-                //startActivity(new Intent(Profile.this, MainActivity.class));
                 // End the activity
                 finish();
 
@@ -144,22 +151,11 @@ public class Profile extends AppCompatActivity {
             public void onClick(View view){
 
                 // This is for choosing image from google drive i think
-
-
                 Intent galleryIntent = new Intent();
                 galleryIntent.setType("image/*"); //define the type->Here we only want to pick images
                 galleryIntent.setAction(Intent.ACTION_GET_CONTENT);
 
                 startActivityForResult(Intent.createChooser(galleryIntent,"SELECT IMAGE" ), GALLERY_PICK);
-
-                /*   The 3 code of lines below also works. It can replace the 4 lines above and still
-                    work.
-                // start picker to get image for cropping and then use the image in cropping activity
-                CropImage.activity()
-                        .setGuidelines(CropImageView.Guidelines.ON)
-                        .start(Profile.this);
-
-                */
             }
         });
 
@@ -223,6 +219,9 @@ public class Profile extends AppCompatActivity {
                                             if (task.isSuccessful()) {
                                                 mProgress.dismiss(); //To remove the progress update or else, it would be up there forever
                                                 Toast.makeText(Profile.this, "Successful in updating database", Toast.LENGTH_LONG).show();
+                                            }else {
+                                                mProgress.dismiss();
+                                                Toast.makeText(Profile.this, "Error in updating database", Toast.LENGTH_LONG).show();
                                             }
                                         }
                                     });
@@ -230,7 +229,7 @@ public class Profile extends AppCompatActivity {
                             });
 
                         }else{
-                            Toast.makeText(Profile.this, "Error", Toast.LENGTH_LONG).show();
+                            Toast.makeText(Profile.this, "Error in uploading to storage", Toast.LENGTH_LONG).show();
                             mProgress.dismiss();
                         }
                     }

@@ -131,17 +131,18 @@ public class SignupActivity extends AppCompatActivity {
                                     mDatabase = FirebaseDatabase.getInstance().getReference().child("Users").child(uid);
 
                                     HashMap<String,String> userMap = new HashMap<>();
-                                    userMap.put("Full Name", fullName);
+                                    userMap.put("FullName", fullName);
                                     userMap.put("UserName", username);
-                                    userMap.put("Phone number", phoneNum);
+                                    userMap.put("PhoneNum", phoneNum);
                                     userMap.put("Email", email);
                                     userMap.put("Password", password);
                                     userMap.put("IC", ic);
-                                    userMap.put("Image", "default");
-                                    userMap.put("Location", "default");
-                                    userMap.put("Profession", "default");
-                                    userMap.put("Description", "default");
-                                    userMap.put("Website", "default");
+                                    userMap.put("Image", "Enter Image");
+                                    userMap.put("Location", "Enter Location");
+                                    userMap.put("Profession", "Enter Profession");
+                                    userMap.put("Description", "Enter Description");
+                                    userMap.put("Website", "Enter Website");
+                                    userMap.put("UserType", "Enter UserType");
 
                                     mDatabase.setValue(userMap); //putting hashmap into the database for the particular user
 
