@@ -53,13 +53,14 @@ public class MainActivity extends AppCompatActivity {
             finish(); //prevent activities from stacking up: once prev activity no needed, finish()
         }
 
-        //The 5 lines below is for the 3 horizontal lines for sliding drawer.
+        //The 5 lines below is for toolbar.
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         ActionBar actionbar = getSupportActionBar();
         actionbar.setDisplayHomeAsUpEnabled(true);
         actionbar.setHomeAsUpIndicator(R.drawable.ic_menu);
 
+        //2 lines below is for the 3 horizontal lines for sliding drawer
         NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(
                 new NavigationView.OnNavigationItemSelectedListener() {
@@ -74,10 +75,19 @@ public class MainActivity extends AppCompatActivity {
                                 mDrawerLayout.closeDrawers();
                                 startActivity(new Intent(MainActivity.this, Profile.class));
                                 break;
+                            case R.id.Users_FreeLancers:
+                                mDrawerLayout.closeDrawers();
+                                startActivity(new Intent(MainActivity.this, users_freelancers.class));
+                                break;
+                            case R.id.Users_Clients:
+                                mDrawerLayout.closeDrawers();
+                                startActivity(new Intent(MainActivity.this, users_clients.class));
+                                break;
                             case R.id.logout:
                                 mDrawerLayout.closeDrawers();
                                 userLogout();
                                 break;
+
                         }
                         mDrawerLayout.closeDrawers();
                         return true;
