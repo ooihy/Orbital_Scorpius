@@ -19,9 +19,15 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.squareup.picasso.Picasso;
 
+import org.w3c.dom.Text;
+
 import de.hdodenhof.circleimageview.CircleImageView;
 
 public class ViewProfile extends AppCompatActivity {
+
+    //For the user_clients to lead to the correct ViewProfile
+    private TextView mDisplayID;
+
 
     private DatabaseReference mDatabase;
 
@@ -49,6 +55,11 @@ public class ViewProfile extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile_view);
+
+        //For the user_clients to lead to the correct ViewProfile
+        String user_id = getIntent().getStringExtra("user_id");
+        mDisplayID = (TextView) findViewById(R.id.profile_displayID);
+        mDisplayID.setText(user_id);
 
         mProfileDisplayImage = (CircleImageView)findViewById(R.id.profileAvatar);
         mProfileName =  findViewById(R.id.profileFullName);
@@ -80,7 +91,10 @@ public class ViewProfile extends AppCompatActivity {
 
                 //For image, we need to use picasso library
                 String image = dataSnapshot.child("Image").getValue().toString();
-                Picasso.get().load(image).into(mProfileDisplayImage);
+
+                if(!image.equals("default")) {
+                    Picasso.get().load(image).placeholder(R.drawable.spaceman_1x).into(mProfileDisplayImage);
+                }
 
                 mProfileName.setText(dataSnapshot.child("FullName").getValue().toString());
                 mProfileProfession.setText(dataSnapshot.child("Profession").getValue().toString());

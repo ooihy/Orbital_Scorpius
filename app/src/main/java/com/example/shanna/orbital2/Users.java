@@ -4,18 +4,17 @@ public class Users {
     private String FullName;
     private String UserType;
     private String Description;
+    private String thumb_image;
 
     public Users(){
 
     }
 
-    public String getDetails() {
-        return FullName + ":  " + Description;
-    }
-
-    public void setDetails(String fullName, String description) {
-        FullName = fullName;
-        Description=description;
+    public Users(String fullName, String userType, String description, String Thumb_image){
+        this.FullName=fullName;
+        this.UserType=userType;
+        this.Description=description;
+        this.thumb_image=Thumb_image;
     }
 
     public String getFullName() {
@@ -25,7 +24,6 @@ public class Users {
     public void setFullName (String fullName) {
         FullName = fullName;
     }
-
 
     public String getUserType() {
         return UserType;
@@ -41,5 +39,13 @@ public class Users {
 
     public void setDescription(String description) {
         this.Description = description;
+    }
+
+    public String getThumb_image() {
+        return thumb_image;
+    }
+
+    public void setThumb_image(String Thumb_image) {
+        this.thumb_image = Thumb_image;
     }
 }
